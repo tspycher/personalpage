@@ -1,0 +1,15 @@
+<?php
+namespace Tspycher;
+
+class Config {
+
+    public $oauth_access_token = 'xxx';
+    public $oauth_access_token_secret = 'xxx';
+    public $consumer_key = 'xxx';
+    public $consumer_secret = 'xxx';
+    public $username = 'xxx';
+
+    public $feedUrls = array(
+        'http://DOMAIN/feed/'
+    );
+}

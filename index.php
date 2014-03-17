@@ -1,3 +1,11 @@
+<?php
+namespace Tspycher;
+include_once "code/config.php";
+include_once "code/Rss.php";
+include_once "code/Twitter.php";
+
+?>
+
 <!DOCTYPE HTML>
 <!--
 	Astral 2.5 by HTML5 UP
@@ -48,6 +56,12 @@
 									<span class="jumplink arrow fa fa-chevron-right"><span>Latest Tweets and News</span></span>
 									<img src="images/me.jpg" alt="" />
 								</a>
+                                <img src="images/Social_Icons/Github.png">
+                                <img src="images/Social_Icons/twitter.png">
+                                <img src="images/Social_Icons/4sq.png">
+                                <img src="images/Social_Icons/g+.png">
+                                <img src="images/Social_Icons/facebook.png">
+
 							</article>
 
 						<!-- Work --> 
@@ -59,6 +73,24 @@
 
 								</p>
 								<!-- Blog Articles / Tweets go here -->
+                                <?php
+                                    $c = new Config();
+                                    $r = new Rss($c->feedUrls);
+                                    $t = new Twitter(
+                                        $c->username,
+                                        $c->consumer_key,
+                                        $c->consumer_secret,
+                                        $c->oauth_access_token,
+                                        $c->oauth_access_token_secret
+                                    );
+
+                                    $_r = $r->collect();
+                                    $_t = $t->collect();
+                                    $data = $_r + $_t;
+                                    krsort($data);
+                                    foreach($data as $x)
+                                        echo $x;
+                                ?>
 							</article>
 
 						<!-- Email -->
