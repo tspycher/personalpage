@@ -101,7 +101,7 @@ include_once "code/Twitter.php";
 								<!-- Blog Articles / Tweets go here -->
                                 <?php
                                     $c = new Config();
-                                    $r = new Rss($c->feedUrls);
+                                    #$r = new Rss($c->feedUrls);
                                     $t = new Twitter(
                                         $c->username,
                                         $c->consumer_key,
@@ -110,7 +110,8 @@ include_once "code/Twitter.php";
                                         $c->oauth_access_token_secret
                                     );
 
-                                    $_r = $r->collect();
+                                    #$_r = $r->collect();
+                                    $_r = array();
                                     $_t = $t->collect();
                                     $data = $_r + $_t;
                                     krsort($data);
