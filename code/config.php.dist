@@ -8,6 +8,8 @@ class Config {
     public $consumer_key = 'xxx';
     public $consumer_secret = 'xxx';
     public $username = 'xxx';
+    public $g_trackingId = "UA-0000000-0";
+    public $g_id = "tspycher.com";
 
     public $feedUrls = array(
         'http://DOMAIN/feed/'
