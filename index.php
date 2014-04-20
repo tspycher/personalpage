@@ -4,6 +4,7 @@ include_once "code/config.php";
 include_once "code/Rss.php";
 include_once "code/Twitter.php";
 
+$c = new Config();
 ?>
 
 <!DOCTYPE HTML>
@@ -100,7 +101,6 @@ include_once "code/Twitter.php";
                                 <br />
 								<!-- Blog Articles / Tweets go here -->
                                 <?php
-                                    $c = new Config();
                                     #$r = new Rss($c->feedUrls);
                                     $t = new Twitter(
                                         $c->username,
