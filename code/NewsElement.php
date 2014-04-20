@@ -13,13 +13,15 @@ class NewsElement {
     private $title;
     private $summary;
     private $url;
+    private $date;
     private $type;
 
-    function __construct($title, $summary, $url, $type = "rss")
+    function __construct($title, $summary, $url, $date,$type = "wordpress")
     {
         $this->summary = $summary;
         $this->title = $title;
         $this->url = $url;
+        $this->date = $date;
         $this->type = $type;
     }
 
@@ -88,9 +90,26 @@ class NewsElement {
         return $this->type;
     }
 
+    /**
+     * @param mixed $date
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDate()
+    {
+        $date = new \DateTime($this->date);
+        return (string)$date->format('Y.m.d H:i:s');
+    }
+
 
     public function __toString() {
-        $x = sprintf('<div class="feed %s"><div class="feed title"><a href="%s" target="_new">%s</a></div><div class="feed summary">%s</div></div>',$this->getType(), $this->getUrl(), $this->getTitle(), $this->getSummary());
+        $x = sprintf('<li><img src="images/Social_Icons/%s.png"><h3><a href="%s" target="_new">%s</a></h3><div class="feeddate"><p>%s</p></div><p>%s</p></li>',$this->getType(), $this->getUrl(), $this->getTitle(), $this->getDate(), $this->getSummary());
         return $x;
     }
 

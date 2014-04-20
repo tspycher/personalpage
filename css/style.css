@@ -12,6 +12,64 @@
 /* Basic                                                                         */
 /*********************************************************************************/
 
+.feed div  {
+    margin: 20px;
+}
+
+.feed ul {
+    list-style-type: none;
+}
+
+.feed h3 {
+    font: 16px/1.5 Helvetica, Verdana, sans-serif;
+}
+
+.feed .feeddate p {
+    font: 12px/1.5 Helvetica, Verdana, sans-serif;
+    display: flex;
+    flex-flow: row wrap;
+    align-content:space-around;
+}
+
+.feed li img {
+    float: left;
+    margin: 0 15px 0 0;
+}
+
+.feed li p {
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
+}
+
+.feed li {
+    padding: 10px;
+    overflow: auto;
+}
+
+.feed li:hover {
+    background: #eee;
+    /* cursor: pointer; */
+}
+
+.feed img {
+    width: 50px;
+}
+
+.feed a:link { text-decoration:none; color: #000000;}
+.feed a:visited {text-decoration:none; color: #000000;}
+.feed a:hover {text-decoration:none; color: #000000;}
+.feed a:active {text-decoration:none; color: #000000;}
+
+.social {
+    position: absolute;
+    left: 0;
+    bottom: 10.0%;
+    margin: 0;
+}
+
+.social img {
+    width: 30px;
+}
+
 	*
 	{
 		-moz-box-sizing: border-box;

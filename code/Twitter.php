@@ -29,7 +29,7 @@ class Twitter {
     public function collect() {
         $data = array();
         foreach($this->returnTweet($this->username) as $tweet) {
-            $data[strtotime($tweet['created_at'])] = new NewsElement($tweet['text'],null,sprintf('https://twitter.com/%s/status/%d',$this->username, $tweet['id']), 'tweet');
+            $data[strtotime($tweet['created_at'])] = new NewsElement($tweet['text'],null,sprintf('https://twitter.com/%s/status/%d',$this->username, $tweet['id']), $tweet['created_at'], 'twitter');
         }
         return $data;
     }

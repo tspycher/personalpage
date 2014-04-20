@@ -29,7 +29,7 @@ class Rss {
         $xml = new \SimpleXMLElement($file);
         $collection = array();
         foreach($xml->channel->item as $feed){
-            $collection[strtotime($feed->pubDate)] = new NewsElement((string)$feed->title, null, $feed->link);
+            $collection[strtotime($feed->pubDate)] = new NewsElement((string)$feed->title, null, $feed->link, $feed->pubDate);
         }
         return $collection;
     }

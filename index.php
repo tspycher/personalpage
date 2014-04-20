@@ -14,7 +14,7 @@ include_once "code/Twitter.php";
 -->
 <html>
 	<head>
-		<title>Astral by HTML5 UP</title>
+		<title>Thomas Spycher</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -50,28 +50,54 @@ include_once "code/Twitter.php";
 							<article id="me" class="panel">
 								<header>
 									<h1>Thomas (Tom) Spycher</h1>
-									<span class="byline">Software Engineer</span>
-								</header>
+									<span class="byline">Passionate Software Engineer,<br /> Car enthusiasts and Photographer</span>
+                                    <div class="social">
+                                        <a href="http://twitter.com/tspycher" target="_blank"> <img src="images/Social_Icons/twitter.png"></a>
+                                        <a href="http://github.com/tspycher" target="_blank"> <img src="images/Social_Icons/Github.png"></a>
+                                        <a href="https://foursquare.com/tspycher" target="_blank"> <img src="images/Social_Icons/4sq.png"></a>
+                                        <a href="http://flickr.com/tspycher" target="_blank"> <img src="images/Social_Icons/flickr.png"></a>
+                                        <a href="https://plus.google.com/+ThomasSpycher" target="_blank"> <img src="images/Social_Icons/g+.png"></a>
+                                        <a href="http://facebook.com/tspycher" target="_blank"> <img src="images/Social_Icons/facebook.png"></a>
+                                        <a href="https://www.xing.com/profile/Thomas_Spycher" target="_blank"> <img src="images/Social_Icons/xing.png"></a>
+
+                                    </div>
+                                </header>
 								<a href="#work" class="jumplink pic">
-									<span class="jumplink arrow fa fa-chevron-right"><span>Latest Tweets and News</span></span>
+									<span class="jumplink arrow fa fa-chevron-right"><span>About & News</span></span>
 									<img src="images/me.jpg" alt="" />
 								</a>
-                                <img src="images/Social_Icons/Github.png">
-                                <img src="images/Social_Icons/twitter.png">
-                                <img src="images/Social_Icons/4sq.png">
-                                <img src="images/Social_Icons/g+.png">
-                                <img src="images/Social_Icons/facebook.png">
 
 							</article>
 
 						<!-- Work --> 
 							<article id="work" class="panel">
 								<header>
-									<h2>Latest News from Me</h2>
+									<h2>About Me</h2>
 								</header>
 								<p>
-
+                                    I'm a <?php echo intval(substr(date('Ymd') - date('Ymd', strtotime('31.05.1984')), 0, -4)); ?> year old passionate Software Engineer. Working for
+                                    <a href="http://cyberlink.ch">Cyberlink AG</a> in Zurich and a Co-Founder of <a href="http://zerodine.com">Zerodine</a>. I'm falling in love with
+                                    beautiful software. I write security and scalability centric software with passion. If not behind my laptop with my earphones plugged in, you will find
+                                    me behind a lens and a camera trying to catch a good picture, behind the steering wheel and driving or I'm forcing myself to do something for my health in a
+                                    <a href="http://www.crossfit-timeout.ch" target="_blank">Crossfitbox</a>.
 								</p>
+                                <h3>Latest Photographic Work</h3>
+
+                                    <div>
+                                        <span style="display: inline-block; vertical-align: top; height: 0px;">
+                                            <a href="http://photo.tspycher.com/" target="_blank">
+                                                <img style='margin-right: 4px;vertical-align:top' src='http://photo.tspycher.com/photo.php?set=72157644067521384&num=1&size=q'/>
+                                            </a>
+                                        </span>
+                                        <span style="display: inline-block; vertical-align: top; margin-left:155px;">
+                                            Beneath being a passionate programmer i'm also a passionate photographer. My latest works, like the one on the left, you can check out
+                                            either on my personal <a href="http://photo.tspycher.com/" target="_blank">Photopage</a> or on <a href="https://flickr.com/tspycher" target="_blank">Flickr</a>.
+                                        </span>
+                                    </div>
+                                <br />
+                                <br />
+                                <h3>Latest Posts and Tweets</h3>
+                                <br />
 								<!-- Blog Articles / Tweets go here -->
                                 <?php
                                     $c = new Config();
@@ -88,9 +114,13 @@ include_once "code/Twitter.php";
                                     $_t = $t->collect();
                                     $data = $_r + $_t;
                                     krsort($data);
-                                    foreach($data as $x)
-                                        echo $x;
-                                ?>
+                                    ?>
+                                    <div class="feed"><ul>
+                                    <?php
+                                        foreach($data as $x)
+                                            echo $x;
+                                    ?>
+                                    </ul></div>
 							</article>
 
 						<!-- Email -->
@@ -98,7 +128,31 @@ include_once "code/Twitter.php";
 								<header>
 									<h2>Email Me</h2>
 								</header>
-								<form action="#" method="post">
+                                <p>Use the form below or just send a mail to <a href="mailto:me@tspycher.com">me@tspycher.com</a>
+                                </p>
+                                <?php
+                                if(!empty($_POST)) {
+                                    // Send Email
+                                    $valid = true;
+                                    $fields = array('name', 'email', 'subject', 'message');
+                                    foreach($fields as $field)
+                                        if(!$_POST[$field]) $valid = false;
+                                    if($valid) {
+                                        // Send Mail
+                                        $body = sprintf("%s", $_POST['message']);
+                                        $subject = sprintf("Websitemessage: %s", $_POST['subject']);
+                                        $sender = sprintf("%s <%s>", $_POST['name'], $_POST['email']);
+                                        $to = 'me@tspycher.com';
+                                        $headers = 'From: '.$sender . "\r\n" .
+                                            'Reply-To: '. $sender . "\r\n" .
+                                            'X-Mailer: PHP/' . phpversion();
+                                        mail($to, $subject, $body, $headers);
+
+                                    }
+                                }
+                                ?>
+
+								<form action=".#email" method="post">
 									<div>
 										<div class="row half">
 											<div class="6u">
