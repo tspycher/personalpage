@@ -49,8 +49,8 @@ include_once "code/Twitter.php";
 						<!-- Me -->
 							<article id="me" class="panel">
 								<header>
-									<h1>Thomas (Tom) Spycher</h1>
-									<span class="byline">Passionate Software Engineer,<br /> Car enthusiasts and Photographer</span>
+									<h1>Thomas "Tom" Spycher</h1>
+									<span class="byline">Passionate Software Engineer,<br /> Car enthusiast and Photographer</span>
                                     <div class="social">
                                         <a href="http://twitter.com/tspycher" target="_blank"> <img src="images/Social_Icons/twitter.png"></a>
                                         <a href="http://github.com/tspycher" target="_blank"> <img src="images/Social_Icons/Github.png"></a>
