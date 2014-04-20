@@ -76,7 +76,7 @@ include_once "code/Twitter.php";
 								</header>
 								<p>
                                     I'm a <?php echo intval(substr(date('Ymd') - date('Ymd', strtotime('31.05.1984')), 0, -4)); ?> year old passionate Software Engineer. Working for
-                                    <a href="http://cyberlink.ch">Cyberlink AG</a> in Zurich and I'm a Co-Founder of <a href="http://zerodine.com">Zerodine</a>. I'm fall in love with
+                                    <a href="http://cyberlink.ch">Cyberlink AG</a> in Zurich and I'm a Co-Founder of <a href="http://zerodine.com">Zerodine</a>. I fall in love with
                                     beautiful software. Mostly I write security and scalability centric software. If not behind my laptop with my earphones plugged in, you will find
                                     me behind a lens and a camera trying to catch a good picture, behind the steering wheel and driving or I'm forcing myself to do something for my health in a
                                     <a href="http://www.crossfit-timeout.ch" target="_blank">Crossfitbox</a>.
