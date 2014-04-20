@@ -112,7 +112,7 @@ $c = new Config();
 
                                     #$_r = $r->collect();
                                     $_r = array();
-                                    $_t = $t->collect();
+                                    $_t = $t->collect(5);
                                     $data = $_r + $_t;
                                     krsort($data);
                                     ?>

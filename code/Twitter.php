@@ -26,9 +26,9 @@ class Twitter {
     }
 
 
-    public function collect() {
+    public function collect($num = 10) {
         $data = array();
-        foreach($this->returnTweet($this->username) as $tweet) {
+        foreach($this->returnTweet($num) as $tweet) {
             $data[strtotime($tweet['created_at'])] = new NewsElement($tweet['text'],null,sprintf('https://twitter.com/%s/status/%d',$this->username, $tweet['id']), $tweet['created_at'], 'twitter');
         }
         return $data;
