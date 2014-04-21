@@ -1,9 +1,17 @@
 <?php
 namespace Tspycher;
+session_start();
+
 include_once "code/config.php";
 include_once "code/Rss.php";
 include_once "code/Twitter.php";
 
+function mailcode($force = false) {
+    if(!array_key_exists('mailcode', $_SESSION) or $force)
+        $_SESSION['mailcode'] = rand(5, 20);
+}
+
+mailcode();
 $c = new Config();
 ?>
 
@@ -132,12 +140,21 @@ $c = new Config();
                                 <p>Use the form below or just send a mail to <a href="mailto:me@tspycher.com">me@tspycher.com</a>
                                 </p>
                                 <?php
+                                $num1 = $_SESSION['mailcode'] - rand(1, $_SESSION['mailcode']);
+                                $num2 = $_SESSION['mailcode'] - $num1;
+                                ?>
+
+                                <?php
                                 if(!empty($_POST)) {
                                     // Send Email
                                     $valid = true;
-                                    $fields = array('name', 'email', 'subject', 'message');
+                                    $fields = array('name', 'email', 'subject', 'message', 'code');
                                     foreach($fields as $field)
                                         if(!$_POST[$field]) $valid = false;
+
+                                    if ($_POST['code'] != $_SESSION['mailcode'])
+                                        $valid = false;
+
                                     if($valid) {
                                         // Send Mail
                                         $body = sprintf("%s", $_POST['message']);
@@ -148,7 +165,11 @@ $c = new Config();
                                             'Reply-To: '. $sender . "\r\n" .
                                             'X-Mailer: PHP/' . phpversion();
                                         mail($to, $subject, $body, $headers);
+                                        mailcode(true);
+                                        print '<div class="success">Vielen Dank für die Email</div>';
 
+                                    } else {
+                                        print '<div class="error">Die Email konnte nicht gesendet werden!</div>';
                                     }
                                 }
                                 ?>
@@ -168,6 +189,11 @@ $c = new Config();
 												<input type="text" class="text" name="subject" placeholder="Subject" />
 											</div>
 										</div>
+                                        <div class="row half">
+                                            <div class="4u">
+                                                <input type="text" class="text" name="code" placeholder="<?php echo $num1; ?> + <?php echo $num2; ?> = ?" />
+                                            </div>
+                                        </div>
 										<div class="row half">
 											<div class="12u">
 												<textarea name="message" placeholder="Message"></textarea>
